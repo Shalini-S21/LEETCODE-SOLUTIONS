@@ -7,7 +7,7 @@ class Solution {
         for(int i=n-1;i>=0;i--) {
             int count = 0;
 
-            while(!dq.isEmpty() && dq.peek() < heights[i]) {
+            while(!dq.isEmpty() && heights[dq.peek()] < heights[i]) {
                 dq.pop();
                 count++;
             }
@@ -17,7 +17,7 @@ class Solution {
 
             arr[i] = count;
 
-            dq.push(heights[i]);
+            dq.push(i);
         }
 
         return arr;
