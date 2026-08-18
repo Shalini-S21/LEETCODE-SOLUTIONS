@@ -1,30 +1,30 @@
 class Solution {
     public int countStudents(int[] students, int[] sandwiches) {
 
-        Queue<Integer> st = new LinkedList<>();
-        Queue<Integer> sd = new LinkedList<>();
+        int zero = 0;
+        int one = 0;
 
-        for(int i=0;i<students.length;i++)
-            st.offer(students[i]);
+        for(int x : students) {
+            if(x == 0)
+                zero++;
+            else
+                one++;
+        }
 
-        for(int i=0;i<sandwiches.length;i++)
-            sd.offer(sandwiches[i]);
+        for(int i=0;i<sandwiches.length;i++) {
 
-        int count = 0;
-
-        while(!st.isEmpty() && count < st.size()) {
-
-            if(st.peek() == sd.peek()) {
-                st.poll();
-                sd.poll();
-                count = 0;
+            if(sandwiches[i] == 0) {
+                if(zero == 0)
+                    return one;
+                zero--;
             }
             else {
-                st.offer(st.poll());
-                count++;
+                if(one == 0)
+                    return zero;
+                one--;
             }
         }
 
-        return st.size();
+        return 0;
     }
 }
